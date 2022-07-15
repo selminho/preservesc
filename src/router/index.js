@@ -1,29 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: () => import('@/layouts/Default'),
-    meta: {
-      requiresAuth: true
-    },
     children: [
       {
-        path: '',
-        name: 'Home',
-        component: Home
-      },
+          path: '',
+          name: 'Home',
+          component: Home
+        },
+        {
+          path: '/perfil',
+          name: 'Perfil',
+          component: () => import(/* webpackChunkName: "perfil" */ '../views/Perfil.vue')
+        },
     ]
   },
   {
-    path: '/',
+    path: "/",
     component: () => import('@/layouts/Blank'),
     children: [
-      {
+    {
         path: '/login',
         name: 'Login',
         component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
